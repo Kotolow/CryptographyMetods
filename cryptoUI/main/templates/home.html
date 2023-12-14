@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Cipher App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Cipher</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="method">Method:</label>
+                <select name="method" id="method">
+                    <option value="monoalphabetic_cipher">Monoalphabetic</option>
+                    <option value="autokey_cipher">Autokey</option>
+                    <option value="vigenere_cipher">Vigenere</option>
+                </select>
+                <br><br>
+                <label for="text">Text:</label>
+                <input type="text" name="text" id="text">
+                <br><br>
+                <label for="key">Key:</label>
+                <input type="text" name="key" id="key">
+                <br><br>
+                <input type="submit" value="Cipher">
+            </form>
+            {% if ciphertext %}
+                <h2>Ciphertext:</h2>
+                <p>{{ ciphertext }}</p>
+            {% endif %}
+        </div>
+        <div class="form-container">
+            <h2>Decipher</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="method">Method:</label>
+                <select name="method" id="method">
+                    <option value="monoalphabetic_decipher">Monoalphabetic</option>
+                    <option value="autokey_decipher">Autokey</option>
+                    <option value="vigenere_decipher">Vigenere</option>
+                </select>
+                <br><br>
+                <label for="text">Text:</label>
+                <input type="text" name="text" id="text">
+                <br><br>
+                <label for="key">Key:</label>
+                <input type="text" name="key" id="key">
+                <br><br>
+                <input type="submit" value="Decipher">
+            </form>
+            {% if plaintext %}
+                <h2>Plaintext:</h2>
+                <p>{{ plaintext }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
